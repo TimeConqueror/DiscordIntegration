@@ -25,7 +25,7 @@ import com.google.common.base.Joiner;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.User;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -280,7 +280,7 @@ public class MinecraftListener {
 
             HashMap<String, String> arguments = new HashMap<>();
             arguments.put("ACHIEVEMENT", achievement.func_150951_e().getUnformattedText());
-            arguments.put("DESCRIPTION", StatCollector.translateToLocalFormatted(achievement.achievementDescription, "KEY"));
+            arguments.put("DESCRIPTION", achievement.getDescription());
 
             MinecraftConfig minecraftConfig = Configuration.getConfig().minecraft;
             MinecraftDimensionConfig dimensionConfig = minecraftConfig.dimensions.getDimension(entityPlayer.dimension);

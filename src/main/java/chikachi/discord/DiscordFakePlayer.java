@@ -15,7 +15,7 @@
 package chikachi.discord;
 
 import com.mojang.authlib.GameProfile;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.User;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;

@@ -28,10 +28,10 @@ import chikachi.discord.core.config.discord.DiscordConfig;
 import chikachi.discord.core.config.linking.LinkingRequest;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.FMLCommonHandler;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -185,7 +185,7 @@ public class DiscordListener extends ListenerAdapter {
                         )
                     ).queue());
 
-                if (event.getMember().getPermissions(event.getTextChannel()).contains(Permission.MESSAGE_MANAGE)) {
+                if (event.getMember().getPermissions(event.getChannel().asTextChannel()).contains(Permission.MESSAGE_MANAGE)) {
                     event.getMessage().delete().queue();
                 }
 
@@ -207,7 +207,7 @@ public class DiscordListener extends ListenerAdapter {
                         ).queue());
                 }
 
-                if (event.getMember().getPermissions(event.getTextChannel()).contains(Permission.MESSAGE_MANAGE)) {
+                if (event.getMember().getPermissions(event.getChannel().asTextChannel()).contains(Permission.MESSAGE_MANAGE)) {
                     event.getMessage().delete().queue();
                 }
                 return;

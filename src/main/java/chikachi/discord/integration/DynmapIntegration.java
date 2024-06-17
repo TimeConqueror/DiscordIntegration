@@ -22,12 +22,13 @@ import chikachi.discord.core.config.discord.DiscordChannelGenericConfig;
 import chikachi.discord.core.config.discord.DiscordConfig;
 import chikachi.discord.core.config.minecraft.MinecraftGenericConfig;
 import cpw.mods.fml.common.Optional;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.Event;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.EventListener;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
 import org.dynmap.DynmapCommonAPI;
 import org.dynmap.DynmapCommonAPIListener;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +80,7 @@ public class DynmapIntegration extends DynmapCommonAPIListener implements EventL
     }
 
     @Override
-    public void onEvent(Event event) {
+    public void onEvent(@NotNull GenericEvent event) {
         if (this.dynmapCommonAPI == null) {
             return;
         }

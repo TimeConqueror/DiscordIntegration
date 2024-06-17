@@ -18,7 +18,7 @@ import chikachi.discord.core.DiscordClient;
 import chikachi.discord.core.MinecraftFormattingCodes;
 import chikachi.discord.core.config.Configuration;
 import chikachi.discord.core.config.linking.LinkingRequest;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.User;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -141,7 +141,7 @@ public class CommandDiscord extends CommandBase {
                 sender.addChatMessage(new ChatComponentText(MinecraftFormattingCodes.GREEN + "Unlinked"));
                 break;
             case "tps":
-                SubCommandTps.execute(sender, argsList);
+                chikachi.discord.command.SubCommandTps.execute(sender, argsList);
                 break;
             case "unstuck":
                 SubCommandUnstuck.execute(sender, argsList);

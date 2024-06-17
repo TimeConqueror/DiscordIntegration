@@ -35,4 +35,16 @@
  */
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
+
+    shadowImplementation 'net.dv8tion:JDA:5.0.0-beta.24'
+    shadowImplementation 'com.vdurmont:emoji-java:4.0.0'
+
+//    JDA dependencies
+//    shadowImplementation 'org.json:json:20160810'
+    shadowImplementation 'org.slf4j:slf4j-simple:2.0.13'
+
+    implementation('com.github.GTNewHorizons:GTNH-Web-Map:0.3.27:dev')
+
+    // IntelliJ
+    implementation 'org.jetbrains:annotations:15.0'
 }
