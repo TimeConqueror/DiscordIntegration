@@ -18,27 +18,29 @@ import chikachi.discord.core.config.types.MessageConfig;
 import com.google.gson.annotations.Since;
 
 public class MinecraftMessagesConfig {
-    private transient static final String CHAT_MESSAGE_NORMAL = "**[{USER}]** {MESSAGE}";
-    private transient static final String CHAT_MESSAGE_WEBHOOK = "{MESSAGE}";
+    private static final String CHAT_MESSAGE_NORMAL = "[{USER}] {MESSAGE}";
+    private static final String CHAT_MESSAGE_WEBHOOK = "{MESSAGE}";
 
-    private transient static final String COMMAND_NORMAL = "**[{USER}]** executed **{COMMAND} {ARGUMENTS}**";
-    private transient static final String COMMAND_WEBHOOK = "*executed **{COMMAND} {ARGUMENTS}***";
+    private static final String COMMAND_NORMAL = "**[{USER}]** executed **{COMMAND} {ARGUMENTS}**";
+    private static final String COMMAND_WEBHOOK = "*executed **{COMMAND} {ARGUMENTS}***";
 
-    private transient static final String PLAYER_JOIN_NORMAL = "**{USER}** just joined the server!";
-    private transient static final String PLAYER_JOIN_WEBHOOK = "*Joined the server!*";
+    private static final String PLAYER_JOIN_NORMAL = "**{USER}** just joined the server!";
+    private static final String PLAYER_JOIN_WEBHOOK = "*Joined the server!*";
 
-    private transient static final String PLAYER_LEAVE_NORMAL = "**{USER}** just left the server!";
-    private transient static final String PLAYER_LEAVE_WEBHOOK = "*Left the server!*";
+    private static final String PLAYER_LEAVE_NORMAL = "**{USER}** just left the server!";
+    private static final String PLAYER_LEAVE_WEBHOOK = "*Left the server!*";
 
-    private transient static final String PLAYER_DEATH_NORMAL = "**{USER}** just died due to {REASON}!";
-    private transient static final String PLAYER_DEATH_WEBHOOK = "*{REASON}*";
+    private static final String PLAYER_DEATH_NORMAL = "**{USER}** just died due to {REASON}!";
+    private static final String PLAYER_DEATH_WEBHOOK = "*{REASON}*";
 
-    private transient static final String ACHIEVEMENT_NORMAL = "**{USER}** just gained the achievement **{ACHIEVEMENT}**!\n*{DESCRIPTION}*";
-    private transient static final String ACHIEVEMENT_WEBHOOK = "*Gained the achievement **{ACHIEVEMENT}**!\n{DESCRIPTION}*";
+    private static final String ACHIEVEMENT_NORMAL = "**{USER}** just gained the achievement **{ACHIEVEMENT}**!\n*{DESCRIPTION}*";
+    private static final String ACHIEVEMENT_WEBHOOK = "*Gained the achievement **{ACHIEVEMENT}**!\n{DESCRIPTION}*";
 
-    private transient static final String SERVER_START = "Server started!";
-    private transient static final String SERVER_STOP = "Server stopped!";
-    private transient static final String SERVER_CRASH = "Server crash detected!";
+    private static final String SERVER_START = ":white_check_mark: **Server has started!**";
+    private static final String SERVER_STOP = ":octagonal_sign: **Server has stopped!**";
+    private static final String SERVER_CRASH = "Server crash detected!";
+
+    public static final String CHAT_TO_MINECRAFT_ALL_ROLES_SEPARATOR = " | ";
 
     @Since(3.0)
     public MessageConfig chatMessage = null;

@@ -16,6 +16,7 @@ package chikachi.discord.core.config.types;
 
 public class MessageConfig {
     public String normal;
+    @Deprecated
     public String webhook;
 
     public MessageConfig(String normal) {
@@ -23,6 +24,7 @@ public class MessageConfig {
         this.webhook = normal;
     }
 
+    @Deprecated
     public MessageConfig(String normal, String webhook) {
         this.normal = normal;
         this.webhook = webhook;

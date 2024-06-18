@@ -18,7 +18,7 @@ import chikachi.discord.core.config.types.MessageConfig;
 import com.google.gson.annotations.Since;
 
 public class DiscordMessagesConfig {
-    private transient static final String CHAT_MESSAGE_NORMAL = "[{USER}] {MESSAGE}";
+    private static final String CHAT_MESSAGE_NORMAL = "[§bDiscord§r | **{toprolecolor}{toprole}**§r] {USER} » {MESSAGE}";
 
     @Since(3.0)
     public MessageConfig chatMessage = null;

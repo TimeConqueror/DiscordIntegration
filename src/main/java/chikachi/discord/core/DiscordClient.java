@@ -17,22 +17,23 @@ package chikachi.discord.core;
 import chikachi.discord.core.config.Configuration;
 import chikachi.discord.core.config.minecraft.MinecraftConfig;
 import chikachi.discord.core.config.types.MessageConfig;
-import net.dv8tion.jda.api.entities.Activity;
+import github.scarsz.discordsrv.util.DiscordUtil;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.SelfUser;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DiscordClient extends ListenerAdapter {
     private static DiscordClient instance;
@@ -59,8 +60,9 @@ public class DiscordClient extends ListenerAdapter {
 
         MinecraftConfig minecraftConfig = Configuration.getConfig().minecraft;
 
+        // send server startup message
         DiscordClient.getInstance().broadcast(
-            new chikachi.discord.core.Message(minecraftConfig.dimensions.generic.messages.serverStart),
+            minecraftConfig.dimensions.generic.messages.serverStart,
             minecraftConfig.dimensions.generic.relayServerStart.getChannels(
                 minecraftConfig.dimensions.generic.discordChannel
             )
@@ -215,7 +217,7 @@ public class DiscordClient extends ListenerAdapter {
                 }
 
                 if (Configuration.getConfig().discord.channels.channels.containsKey(channelId)) {
-                    if (Configuration.getConfig().discord.channels.channels.get(channelId).webhook.trim().length() > 0) {
+                    if (!Configuration.getConfig().discord.channels.channels.get(channelId).webhook.trim().isEmpty()) {
                         chikachi.discord.core.WebhookMessage webhookMessage = message.toWebhook(channel);
                         if (webhookMessage.queue(this.jda, channelId)) {
                             continue;
@@ -229,7 +231,11 @@ public class DiscordClient extends ListenerAdapter {
                     text = text.substring(0, 1997) + "...";
                 }
 
-                channel.sendMessage(text).queue();
+                DiscordUtil.queueMessage(
+                    channel,
+                    text,
+                    true
+                );
             }
         }
     }
@@ -281,5 +287,4 @@ public class DiscordClient extends ListenerAdapter {
             }
         }
     }
-
 }

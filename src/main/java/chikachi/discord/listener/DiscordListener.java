@@ -27,17 +27,25 @@ import chikachi.discord.core.config.discord.DiscordChannelGenericConfig;
 import chikachi.discord.core.config.discord.DiscordConfig;
 import chikachi.discord.core.config.linking.LinkingRequest;
 import com.mojang.authlib.GameProfile;
+import com.vdurmont.emoji.EmojiParser;
 import cpw.mods.fml.common.FMLCommonHandler;
+import github.scarsz.discordsrv.util.DiscordUtil;
+import github.scarsz.discordsrv.util.MessageUtil;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class DiscordListener extends ListenerAdapter {
     @Override
@@ -132,6 +140,13 @@ public class DiscordListener extends ListenerAdapter {
                 "MESSAGE",
                 content
             );
+
+            List<Role> selectedRoles = !event.isWebhookMessage() ? event.getMember().getRoles() : Collections.emptyList();
+            Role topRole = !selectedRoles.isEmpty() ? selectedRoles.get(0) : null;
+
+            NamedTextColor roleColor = NamedTextColor.nearestTo(TextColor.color(topRole != null ? topRole.getColorRaw() : DiscordUtil.DISCORD_DEFAULT_COLOR_RGB));
+            arguments.put("toprolecolor", roleColor.legacyColor());
+            arguments.put("toprole",topRole != null ? DiscordUtil.getRoleName(topRole): "");
 
             Message message = new Message()
                 .setAuthor(event.getMember().getEffectiveName())

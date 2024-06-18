@@ -25,6 +25,8 @@ import com.google.common.base.Joiner;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
+import github.scarsz.discordsrv.util.DiscordUtil;
+import github.scarsz.discordsrv.util.MessageUtil;
 import net.dv8tion.jda.api.entities.User;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
@@ -39,9 +41,11 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.BiFunction;
 
 public class MinecraftListener {
     @SubscribeEvent(priority = EventPriority.LOWEST)

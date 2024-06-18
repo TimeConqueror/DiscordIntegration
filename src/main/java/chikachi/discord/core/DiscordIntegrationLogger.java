@@ -29,4 +29,24 @@ public class DiscordIntegrationLogger {
     public static void Log(String message, boolean warning) {
         logger.log(warning ? Level.WARN : Level.INFO, String.format("[%s] %s", CoreConstants.VERSION, message));
     }
+
+    public static void debug(String message) {
+        logger.debug(String.format("[%s] %s", CoreConstants.VERSION, message));
+    }
+
+    public static void warning(String message) {
+        logger.warn(String.format("[%s] %s", CoreConstants.VERSION, message));
+    }
+
+    public static void error(String message) {
+        logger.error(String.format("[%s] %s", CoreConstants.VERSION, message));
+    }
+
+    public static void debug(Throwable exception) {
+        logger.debug(exception);
+    }
+
+    public static void error(Throwable exception) {
+        logger.error(exception);
+    }
 }
