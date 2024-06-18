@@ -280,7 +280,7 @@ public class MinecraftListener {
 
             HashMap<String, String> arguments = new HashMap<>();
             arguments.put("ACHIEVEMENT", achievement.func_150951_e().getUnformattedText());
-            arguments.put("DESCRIPTION", achievement.getDescription());
+            arguments.put("DESCRIPTION", StatCollector.translateToLocalFormatted(achievement.achievementDescription, "KEY"));
 
             MinecraftConfig minecraftConfig = Configuration.getConfig().minecraft;
             MinecraftDimensionConfig dimensionConfig = minecraftConfig.dimensions.getDimension(entityPlayer.dimension);
